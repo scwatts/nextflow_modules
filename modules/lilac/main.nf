@@ -3,7 +3,7 @@ process LILAC {
   container 'docker.io/scwatts/lilac:1.2'
 
   input:
-  tuple val(meta), path(tumor_bam), path(normal_bam), path(rna_bam), path(purple_dir)
+  tuple val(meta), path(tumor_bam), path(normal_bam), path(purple_dir)
   path ref_data_genome_dir
   val ref_data_genome_fn
   path lilac_resource_dir, stageAs: 'lilac_resource_dir'
@@ -20,7 +20,6 @@ process LILAC {
   def sample_name = get_sample_name(meta, tumor_bam, normal_bam)
   def tumor_bam_arg = tumor_bam ? "-tumor_bam ${tumor_bam}" : ''
   def reference_bam_arg = normal_bam ? "-reference_bam ${normal_bam}" : ''
-  def rna_bam_arg = rna_bam ? "-rna_bam ${rna_bam}" : ''
   def purple_args = purple_dir ? """
     -gene_copy_number ${purple_dir}/${sample_name}.purple.cnv.gene.tsv \
     -somatic_vcf ${purple_dir}/${sample_name}.purple.sv.vcf.gz \
@@ -64,4 +63,3 @@ def get_sample_name(meta, tumor_bam, normal_bam) {
         Sys.exit(1)
     }
 }
-

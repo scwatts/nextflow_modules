@@ -43,15 +43,15 @@ process GRIPSS_GERMLINE {
 
   stub:
   """
-  cat <<EOF > ${meta.get(['sample_name', 'tumor'])}.gripss.filtered.vcf.gz
+  cat <<EOF > ${meta.get(['sample_name', 'normal'])}.gripss.filtered.vcf.gz
   ##fileformat=VCFv4.1
   ##contig=<ID=.>
   #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
   .	.	.	.	.	.	.
   EOF
-  touch ${meta.get(['sample_name', 'tumor'])}.gripss.filtered.vcf.gz.tbi
-  touch ${meta.get(['sample_name', 'tumor'])}.gripss.vcf.gz
-  touch ${meta.get(['sample_name', 'tumor'])}.gripss.vcf.gz.tbi
+  touch ${meta.get(['sample_name', 'normal'])}.gripss.filtered.vcf.gz.tbi
+  touch ${meta.get(['sample_name', 'normal'])}.gripss.vcf.gz
+  touch ${meta.get(['sample_name', 'normal'])}.gripss.vcf.gz.tbi
   echo -e '${task.process}:\\n  stub: noversions\\n' > versions.yml
   """
 }

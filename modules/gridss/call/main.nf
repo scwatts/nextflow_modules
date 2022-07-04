@@ -3,7 +3,7 @@ process CALL {
   container 'docker.io/scwatts/gridss:2.13.2'
 
   input:
-  tuple val(meta), path(tumor_bams), path(normal_bams), path(gridss_assembled), val(tumor_labels), val(normal_labels)
+  tuple val(meta), path(bams), path(gridss_assembled), val(labels)
   path ref_data_genome_dir
   val ref_data_genome_fn
   path blacklist
@@ -61,7 +61,7 @@ process CALL {
     --assembly "${output_dirname}/sv_assemblies.bam" \
     --output "${output_dirname}/sv_vcf.vcf.gz" \
     --threads "${task.cpus}" \
-    "${bams_arg}"
+    ${bams_arg}
 
   # NOTE(SW): hard coded since there is no reliable way to obtain version information, see GH issue
   # https://github.com/PapenfussLab/gridss/issues/586

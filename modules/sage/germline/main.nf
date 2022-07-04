@@ -3,7 +3,7 @@ process SAGE_GERMLINE {
   container 'quay.io/biocontainers/hmftools-sage:3.0.3--hdfd78af_0'
 
   input:
-  tuple val(meta), path(tumor_bam), path(normal_bam)
+  tuple val(meta), path(tumor_bam), path(normal_bam), path(tumor_bai), path(normal_bai)
   path ref_data_genome_dir
   val ref_data_genome_fn
   path sage_known_hotspots_germline
@@ -12,8 +12,8 @@ process SAGE_GERMLINE {
   path ensembl_data_dir
 
   output:
-  tuple val(meta), path("${meta.subject_name}.sage.vcf.gz"), emit: vcf
-  path 'versions.yml'                                      , emit: versions
+  tuple val(meta), path("${meta.subject_name}.sage_germline.vcf.gz"), emit: vcf
+  path 'versions.yml'                                               , emit: versions
 
   when:
   task.ext.when == null || task.ext.when
@@ -45,7 +45,7 @@ process SAGE_GERMLINE {
       -mnv_filter_enabled false \
       -panel_only \
       -threads "${task.cpus}" \
-      -out "${meta.subject_name}.sage.vcf.gz"
+      -out "${meta.subject_name}.sage_germline.vcf.gz"
 
   # NOTE(SW): hard coded since there is no reliable way to obtain version information.
   cat <<-END_VERSIONS > versions.yml
@@ -56,7 +56,7 @@ process SAGE_GERMLINE {
 
   stub:
   """
-  touch "${meta.subject_name}.sage.vcf.gz"
+  touch "${meta.subject_name}.sage_germline.vcf.gz"
   echo -e '${task.process}:\\n  stub: noversions\\n' > versions.yml
   """
 }

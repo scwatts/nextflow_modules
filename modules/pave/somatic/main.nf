@@ -1,3 +1,5 @@
+// NOTE(SW): PAVE gnomad filtering is not yet documented but is used in Pipeline5 https://github.com/hartwigmedical/pipeline5/blob/master/cluster/src/main/java/com/hartwig/pipeline/tertiary/pave/PaveArguments.java#L27-L28
+
 process PAVE_SOMATIC {
   //conda (params.enable_conda ? "bioconda::hmftools-pave=1.2" : null)
   container 'docker.io/scwatts/pave:1.2'
@@ -6,15 +8,15 @@ process PAVE_SOMATIC {
   tuple val(meta), path(sage_vcf)
   path ref_data_genome_dir
   val ref_data_genome_fn
-  path ensembl_data_dir
-  path driver_gene_panel
-  path mappability_bed
   path sage_pon_file
+  path mappability_bed
+  path driver_gene_panel
+  path ensembl_data_dir
 
   output:
-  tuple val(meta), path("*.pave.vcf.gz")    , emit: vcf
-  tuple val(meta), path("*.pave.vcf.gz.tbi"), emit: index
-  path 'versions.yml'                       , emit: versions
+  tuple val(meta), path("*.vcf.gz")    , emit: vcf
+  tuple val(meta), path("*.vcf.gz.tbi"), emit: index
+  path 'versions.yml'                  , emit: versions
 
   when:
   task.ext.when == null || task.ext.when
@@ -48,7 +50,7 @@ process PAVE_SOMATIC {
 
   stub:
   """
-  touch ${meta.get(['sample_name', 'tumor'])}.sage.pave.vcf.gz{,.tbi}
+  touch ${meta.get(['sample_name', 'tumor'])}.sage.pave_somatic.vcf.gz{,.tbi}
   echo -e '${task.process}:\\n  stub: noversions\\n' > versions.yml
   """
 }

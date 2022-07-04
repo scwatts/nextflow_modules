@@ -3,7 +3,7 @@ process PURPLE {
   container 'docker.io/scwatts/purple:3.4'
 
   input:
-  tuple val(meta), path(amber), path(cobalt), path(sv_soft_vcf), path(sv_soft_vcf_index), path(sv_hard_vcf), path(sv_hard_vcf_index), path(smlv_tumor_vcf), path(smlv_normal_vcf)
+  tuple val(meta), path(amber), path(cobalt), path(sv_hard_vcf), path(sv_hard_vcf_index), path(sv_soft_vcf), path(sv_soft_vcf_index), path(smlv_tumor_vcf), path(smlv_normal_vcf)
   path ref_data_genome_dir
   val ref_data_genome_fn
   path gc_profile

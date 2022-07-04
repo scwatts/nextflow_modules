@@ -3,7 +3,7 @@ process LINX_GERMLINE {
   container 'quay.io/biocontainers/hmftools-linx:1.19--hdfd78af_0'
 
   input:
-  tuple val(meta), path(purple_sv)
+  tuple val(meta), path(gripss_sv)
   path fragile_sites
   path line_elements
   path ensembl_data_dir
@@ -27,7 +27,7 @@ process LINX_GERMLINE {
       -sample "${meta.get(['sample_name', 'normal'])}" \
       -germline \
       -ref_genome_version 38 \
-      -sv_vcf "${purple_sv}" \
+      -sv_vcf "${gripss_sv}" \
       -fragile_site_file "${fragile_sites}" \
       -line_element_file "${line_elements}" \
       -ensembl_data_dir "${ensembl_data_dir}" \
@@ -44,7 +44,7 @@ process LINX_GERMLINE {
 
   stub:
   """
-  mkdir linx_annotation/
+  mkdir linx_germline/
   echo -e '${task.process}:\\n  stub: noversions\\n' > versions.yml
   """
 }

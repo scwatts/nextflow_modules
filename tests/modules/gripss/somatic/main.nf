@@ -3,7 +3,7 @@ nextflow.enable.dsl = 2
 
 include { GRIPSS_SOMATIC } from '../../../../modules/gripss/somatic/main.nf'
 
-workflow test_gripss {
+workflow test_gripss_somatic {
   // Set up inputs
   ch_input = [
     [

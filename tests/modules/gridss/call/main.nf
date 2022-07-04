@@ -22,8 +22,8 @@ workflow test_call {
       './nextflow_testdata/hmftools/gridss_assemble/',
       checkIfExists: true
     ),
-    ['TEST_sample_tumor'],
-    ['TEST_sample_normal'],
+    ['SEQC-II_Tumor_50pc'],
+    ['SEQC-II_Normal'],
   ]
   genome_dir = file('./reference_data/genomes/', checkIfExists: true)
   genome_fn = 'hg38.fa'

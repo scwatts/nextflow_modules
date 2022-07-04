@@ -1,3 +1,5 @@
+// NOTE(SW): PAVE gnomad filtering is not yet documented but is used in Pipeline5 https://github.com/hartwigmedical/pipeline5/blob/master/cluster/src/main/java/com/hartwig/pipeline/tertiary/pave/PaveArguments.java#L27-L28
+
 process PAVE_GERMLINE {
   //conda (params.enable_conda ? "bioconda::hmftools-pave=1.2" : null)
   container 'docker.io/scwatts/pave:1.2'
@@ -14,9 +16,9 @@ process PAVE_GERMLINE {
   path sage_blacklist_vcf
 
   output:
-  tuple val(meta), path("*.pave.vcf.gz")    , emit: vcf
-  tuple val(meta), path("*.pave.vcf.gz.tbi"), emit: index
-  path 'versions.yml'                       , emit: versions
+  tuple val(meta), path("*.vcf.gz")    , emit: vcf
+  tuple val(meta), path("*.vcf.gz.tbi"), emit: index
+  path 'versions.yml'                  , emit: versions
 
   when:
   task.ext.when == null || task.ext.when
@@ -51,7 +53,7 @@ process PAVE_GERMLINE {
 
   stub:
   """
-  touch ${meta.get(['sample_name', 'tumor'])}.sage.pave.vcf.gz{,.tbi}
+  touch ${meta.get(['sample_name', 'tumor'])}.sage.pave_germline.vcf.gz{,.tbi}
   echo -e '${task.process}:\\n  stub: noversions\\n' > versions.yml
   """
 }

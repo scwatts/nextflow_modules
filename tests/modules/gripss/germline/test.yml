@@ -5,9 +5,9 @@
     - gripss
   files:
     - path: output/gripss/
-    - path: output/gripss/SEQC-II_Tumor_50pc.gripss.vcf.gz
-    - path: output/gripss/SEQC-II_Tumor_50pc.gripss.vcf.gz.tbi
-    - path: output/gripss/SEQC-II_Tumor_50pc.gripss.filtered.vcf.gz
-    - path: output/gripss/SEQC-II_Tumor_50pc.gripss.filtered.vcf.gz.tbi
+    - path: output/gripss/SEQC-II_Normal.gripss.vcf.gz
+    - path: output/gripss/SEQC-II_Normal.gripss.vcf.gz.tbi
+    - path: output/gripss/SEQC-II_Normal.gripss.filtered.vcf.gz
+    - path: output/gripss/SEQC-II_Normal.gripss.filtered.vcf.gz.tbi
     - path: output/gripss/versions.yml
-      md5sum: 17bd6b047d66730bc41fb6cfe23c05ad
+      md5sum: a0b843b21930354d1d0fabfe837264d0

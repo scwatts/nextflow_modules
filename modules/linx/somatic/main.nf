@@ -3,7 +3,7 @@ process LINX_SOMATIC {
   container 'quay.io/biocontainers/hmftools-linx:1.19--hdfd78af_0'
 
   input:
-  tuple val(meta), path(purple)
+  tuple val(meta), path(purple_dir)
   path fragile_sites
   path line_elements
   path ensembl_data_dir
@@ -27,8 +27,8 @@ process LINX_SOMATIC {
       ${args} \
       -sample "${meta.get(['sample_name', 'tumor'])}" \
       -ref_genome_version 38 \
-      -sv_vcf "${purple}/${meta.get(['sample_name', 'tumor'])}.purple.sv.vcf.gz" \
-      -purple_dir "${purple}" \
+      -sv_vcf "${purple_dir}/${meta.get(['sample_name', 'tumor'])}.purple.sv.vcf.gz" \
+      -purple_dir "${purple_dir}" \
       -fragile_site_file "${fragile_sites}" \
       -line_element_file "${line_elements}" \
       -ensembl_data_dir "${ensembl_data_dir}" \
@@ -47,7 +47,7 @@ process LINX_SOMATIC {
 
   stub:
   """
-  mkdir linx_annotation/
+  mkdir linx_somatic/
   echo -e '${task.process}:\\n  stub: noversions\\n' > versions.yml
   """
 }

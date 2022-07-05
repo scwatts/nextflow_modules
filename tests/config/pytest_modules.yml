@@ -70,9 +70,9 @@ purple/germline:
   - modules/purple/germline/**
   - tests/modules/purple/germline/**
 
-purple/somatic:
-  - modules/purple/somatic/**
-  - tests/modules/purple/somatic/**
+purple:
+  - modules/purple/**
+  - tests/modules/purple/**
 
 sage/germline:
   - modules/sage/germline/**
@@ -81,6 +81,10 @@ sage/germline:
 sage/somatic:
   - modules/sage/somatic/**
   - tests/modules/sage/somatic/**
+
+sambamba/slice:
+  - modules/sambamba/slice/**
+  - tests/modules/sambamba/slice/**
 
 teal:
   - modules/teal/**

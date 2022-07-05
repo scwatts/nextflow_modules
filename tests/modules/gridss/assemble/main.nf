@@ -6,28 +6,28 @@ include { ASSEMBLE } from '../../../../modules/gridss/assemble/main.nf'
 workflow test_assemble {
   // Set up inputs
   ch_input = [
+    [:],
     [
-      ['sample_name', 'tumor']: 'TEST_sample_tumor',
-      ['sample_name', 'normal']: 'TEST_sample_normal',
+      file(
+        './nextflow_testdata/hmftools/gridss_extract_fragments/SEQC-II_Tumor_50pc-ready.targeted.bam',
+        checkIfExists: true
+      ),
+      file(
+        './nextflow_testdata/hmftools/read_sets/SEQC-II_Normal-ready.bam',
+        checkIfExists: true
+      ),
     ],
-    file(
-      './nextflow_testdata/hmftools/gridss_extract_fragments/SEQC-II_Tumor_50pc-ready.targeted.bam',
-      checkIfExists: true
-    ),
-    file(
-      './nextflow_testdata/hmftools/read_sets/SEQC-II_Normal-ready.bam',
-      checkIfExists: true
-    ),
-    file(
-      './nextflow_testdata/hmftools/gridss_preprocess/SEQC-II_Tumor_50pc-ready.targeted.bam.gridss.working',
-      checkIfExists: true
-    ),
-    file(
-      './nextflow_testdata/hmftools/gridss_preprocess/SEQC-II_Normal-ready.bam.gridss.working',
-      checkIfExists: true
-    ),
-    ['TEST_sample_tumor'],
-    ['TEST_sample_normal'],
+    [
+      file(
+        './nextflow_testdata/hmftools/gridss_preprocess/SEQC-II_Tumor_50pc-ready.targeted.bam.gridss.working',
+        checkIfExists: true
+      ),
+      file(
+        './nextflow_testdata/hmftools/gridss_preprocess/SEQC-II_Normal-ready.bam.gridss.working',
+        checkIfExists: true
+      ),
+    ],
+    ['TEST_sample_tumor', 'TEST_sample_normal'],
   ]
   genome_dir = file('./reference_data/genomes/', checkIfExists: true)
   genome_fn = 'hg38.fa'

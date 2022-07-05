@@ -1,0 +1,10 @@
+- name: sambamba slice
+  command: nextflow run ./tests/modules/sambamba/slice -entry test_sambamba_slice -c ./tests/config/nextflow.config -c ./tests/modules/sambamba/slice/nextflow.config
+  tags:
+    - sambamba/slice
+    - sambamba
+  files:
+    - path: output/sambamba/
+    - path: output/sambamba/SEQC-II_Tumor_50pc-ready.sliced.bam
+    - path: output/sambamba/versions.yml
+      md5sum: a00d1dcacaf33a3ba29db0aeac621c8f

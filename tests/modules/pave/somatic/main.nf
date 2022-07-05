@@ -26,9 +26,9 @@ workflow test_pave_somatic {
     ch_input,
     genome_dir,
     genome_fn,
-    ensembl_data_dir,
-    driver_gene_panel,
-    mappability_bed,
     sage_pon_file,
+    mappability_bed,
+    driver_gene_panel,
+    ensembl_data_dir,
   )
 }

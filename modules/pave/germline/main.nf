@@ -8,12 +8,12 @@ process PAVE_GERMLINE {
   tuple val(meta), path(sage_vcf)
   path ref_data_genome_dir
   val ref_data_genome_fn
-  path ensembl_data_dir
-  path driver_gene_panel
-  path mappability_bed
-  path clinvar_vcf
   path sage_blacklist_bed
   path sage_blacklist_vcf
+  path clinvar_vcf
+  path mappability_bed
+  path driver_gene_panel
+  path ensembl_data_dir
 
   output:
   tuple val(meta), path("*.vcf.gz")    , emit: vcf

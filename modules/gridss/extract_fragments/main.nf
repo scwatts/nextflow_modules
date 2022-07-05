@@ -3,7 +3,7 @@ process EXTRACT_FRAGMENTS {
   container 'docker.io/scwatts/gridss:2.13.2'
 
   input:
-  tuple val(meta), path(bam), path(bai), path(sv)
+  tuple val(meta), path(bam), path(bai), path(sv_vcf)
 
   output:
   tuple val(meta), path("${output_fp}"), emit: bam
@@ -22,7 +22,7 @@ process EXTRACT_FRAGMENTS {
   gridss_extract_overlapping_fragments \
     ${args} \
     --jar "${task.ext.jarPath}" \
-    --targetvcf "${manta_vcf}" \
+    --targetvcf "${sv_vcf}" \
     --workingdir gridss_extract_fragments/work/ \
     --output "${output_fp}" \
     --threads "${task.cpus}" \
@@ -42,6 +42,7 @@ process EXTRACT_FRAGMENTS {
 
   stub:
   output_fp = "gridss_extract_fragments/${bam.getSimpleName()}.targeted.bam"
+
   """
   mkdir -p gridss_extract_fragments/
   touch "${output_fp}"

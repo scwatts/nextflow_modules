@@ -19,6 +19,14 @@ workflow test_sage_somatic {
       './nextflow_testdata/hmftools/read_sets/SEQC-II_Normal-ready.bam',
       checkIfExists: true
     ),
+    file(
+      './nextflow_testdata/hmftools/read_sets/SEQC-II_Tumor_50pc-ready.bam.bai',
+      checkIfExists: true
+    ),
+    file(
+      './nextflow_testdata/hmftools/read_sets/SEQC-II_Normal-ready.bam.bai',
+      checkIfExists: true
+    ),
   ]
   genome_dir = file('./reference_data/genomes/', checkIfExists: true)
   genome_fn = 'hg38.fa'

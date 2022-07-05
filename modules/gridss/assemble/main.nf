@@ -20,7 +20,7 @@ process ASSEMBLE {
   def output_dirname = 'gridss_assemble'
   def labels_arg = labels.join(',')
   // NOTE(SW): Nextflow implicitly casts List<TaskPath> to an atomic TaskPath, hence the required check below
-  def bams_list = bams instanceof List ?: [bams]
+  def bams_list = bams instanceof List ? bams : [bams]
   def bams_arg = bams_list.join(' ')
 
   """

@@ -1,9 +1,9 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl = 2
 
-include { EXTRACT_FRAGMENTS } from '../../../../modules/gridss/extract_fragments/main.nf'
+include { SAMBAMBA_SLICE } from '../../../../modules/sambamba/slice/main.nf'
 
-workflow test_extract_fragments {
+workflow test_sambamba_slice {
   // Set up inputs
   ch_input = [
     [:],
@@ -15,14 +15,12 @@ workflow test_extract_fragments {
       './nextflow_testdata/hmftools/read_sets/SEQC-II_Tumor_50pc-ready.bam.bai',
       checkIfExists: true
     ),
-    file(
-      './nextflow_testdata/hmftools/structural_variants/SEQC-II-50pc-manta.vcf.gz',
-      checkIfExists: true
-    ),
+    [],
+    ['chr10:87754038-87754038'],
   ]
 
   // Run module
-  EXTRACT_FRAGMENTS(
+  SAMBAMBA_SLICE(
     ch_input,
   )
 }

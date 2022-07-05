@@ -28,11 +28,11 @@ workflow test_pave_germline {
     ch_input,
     genome_dir,
     genome_fn,
-    ensembl_data_dir,
-    driver_gene_panel,
-    mappability_bed,
-    clinvar_vcf,
     sage_blacklist_bed,
     sage_blacklist_vcf,
+    clinvar_vcf,
+    mappability_bed,
+    driver_gene_panel,
+    ensembl_data_dir,
   )
 }

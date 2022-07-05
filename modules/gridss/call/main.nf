@@ -4,6 +4,7 @@ process CALL {
 
   input:
   tuple val(meta), path(bams), path(gridss_assembled), val(labels)
+  path gridss_config
   path ref_data_genome_dir
   val ref_data_genome_fn
   path blacklist
@@ -17,6 +18,7 @@ process CALL {
 
   script:
   def args = task.ext.args ?: ''
+  def config_arg = gridss_config ? "--configuration ${gridss_config}" : ''
   def output_dirname = 'gridss_call'
   def labels_arg = labels.join(',')
   // NOTE(SW): Nextflow implicitly casts List<TaskPath> to an atomic TaskPath, hence the required check below
@@ -60,6 +62,7 @@ process CALL {
     --assembly "${output_dirname}/sv_assemblies.bam" \
     --output "${output_dirname}/sv_vcf.vcf.gz" \
     --threads "${task.cpus}" \
+    ${config_arg} \
     ${bams_arg}
 
   # NOTE(SW): hard coded since there is no reliable way to obtain version information, see GH issue

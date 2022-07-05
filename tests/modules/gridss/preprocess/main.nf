@@ -12,12 +12,14 @@ workflow test_preprocess {
       checkIfExists: true
     ),
   ]
+  gridss_config = file('./nextflow_testdata/hmftools/misc/gridss_config.txt', checkIfExists: true)
   genome_dir = file('./reference_data/genomes/', checkIfExists: true)
   genome_fn = 'hg38.fa'
 
   // Run module
   PREPROCESS(
     ch_input,
+    gridss_config,
     genome_dir,
     genome_fn,
   )

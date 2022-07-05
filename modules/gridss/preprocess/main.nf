@@ -4,6 +4,7 @@ process PREPROCESS {
 
   input:
   tuple val(meta), path(bam)
+  path gridss_config
   path ref_data_genome_dir
   val ref_data_genome_fn
 
@@ -16,6 +17,7 @@ process PREPROCESS {
 
   script:
   def args = task.ext.args ?: ''
+  def config_arg = gridss_config ? "--configuration ${gridss_config}" : ''
 
   """
   gridss \
@@ -26,7 +28,8 @@ process PREPROCESS {
     --reference "${ref_data_genome_dir}/${ref_data_genome_fn}" \
     --workingdir gridss_preprocess/ \
     --threads "${task.cpus}" \
-    "${bam}"
+    ${config_arg} \
+    ${bam}
 
   # NOTE(SW): hard coded since there is no reliable way to obtain version information, see GH issue
   # https://github.com/PapenfussLab/gridss/issues/586

@@ -29,6 +29,7 @@ workflow test_assemble {
     ],
     ['TEST_sample_tumor', 'TEST_sample_normal'],
   ]
+  gridss_config = file('./nextflow_testdata/hmftools/misc/gridss_config.txt', checkIfExists: true)
   genome_dir = file('./reference_data/genomes/', checkIfExists: true)
   genome_fn = 'hg38.fa'
   gridss_blacklist = file('./reference_data/hmftools/gridss/ENCFF356LFX.bed', checkIfExists: true)
@@ -36,6 +37,7 @@ workflow test_assemble {
   // Run module
   ASSEMBLE(
     ch_input,
+    gridss_config,
     genome_dir,
     genome_fn,
     gridss_blacklist,

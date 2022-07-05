@@ -14,7 +14,7 @@ process SAMBAMBA_SLICE {
 
   script:
   def args = task.ext.args ?: ''
-  def bed_arg = bed ? "-regions ${bed}" : ''
+  def bed_arg = bed ? "--regions ${bed}" : ''
   def regions_arg = regions ? regions.join(' ') : ''
 
   """

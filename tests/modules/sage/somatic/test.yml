@@ -5,6 +5,6 @@
     - sage
   files:
     - path: output/sage/
-    - path: output/sage/SEQC-II.sage.vcf.gz
+    - path: output/sage/SEQC-II.sage_somatic.vcf.gz
     - path: output/sage/versions.yml
       md5sum: ad9e1d5d5d56a99502aaea36c13c470d

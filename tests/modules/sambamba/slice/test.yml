@@ -6,5 +6,6 @@
   files:
     - path: output/sambamba/
     - path: output/sambamba/SEQC-II_Tumor_50pc-ready.sliced.bam
+    - path: output/sambamba/SEQC-II_Tumor_50pc-ready.sliced.bam.bai
     - path: output/sambamba/versions.yml
       md5sum: a00d1dcacaf33a3ba29db0aeac621c8f

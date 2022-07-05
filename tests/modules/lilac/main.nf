@@ -18,7 +18,14 @@ workflow test_lilac {
       './nextflow_testdata/hmftools/read_sets/SEQC-II_Normal-ready.bam',
       checkIfExists: true
     ),
-    [],
+    file(
+      './nextflow_testdata/hmftools/read_sets/SEQC-II_Tumor_50pc-ready.bam.bai',
+      checkIfExists: true
+    ),
+    file(
+      './nextflow_testdata/hmftools/read_sets/SEQC-II_Normal-ready.bam.bai',
+      checkIfExists: true
+    ),
     file(
       './nextflow_testdata/hmftools/purple/',
       checkIfExists: true

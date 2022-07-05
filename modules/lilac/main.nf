@@ -3,7 +3,7 @@ process LILAC {
   container 'docker.io/scwatts/lilac:1.2'
 
   input:
-  tuple val(meta), path(tumor_bam), path(normal_bam), path(purple_dir)
+  tuple val(meta), path(tumor_bam), path(normal_bam), path(tumour_bai), path(normal_bai), path(purple_dir)
   path ref_data_genome_dir
   val ref_data_genome_fn
   path lilac_resource_dir, stageAs: 'lilac_resource_dir'

@@ -6,8 +6,8 @@ process SAMBAMBA_SLICE {
   tuple val(meta), path(bam), path(bai), path(bed), val(regions)
 
   output:
-  tuple val(meta), path("*sliced.bam"), emit: bam
-  path 'versions.yml'                 , emit: versions
+  tuple val(meta), path("*sliced.bam"), path("*sliced.bam.bai"), emit: bam
+  path 'versions.yml'                                          , emit: versions
 
   when:
   task.ext.when == null || task.ext.when
@@ -23,6 +23,8 @@ process SAMBAMBA_SLICE {
     --output-filename "${bam.simpleName}.sliced.bam" \
     ${bam} \
     ${regions_arg} \
+
+  sambamba index "${bam.simpleName}.sliced.bam"
 
   cat <<-END_VERSIONS > versions.yml
     "${task.process}":
